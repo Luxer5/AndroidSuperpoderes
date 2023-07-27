@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidSuperpoderesTheme {
-                //ComposableExercise()
+                //Ejercicio1()
                 Ejercicio2()
                 /*BaseComposable {
                         Surface(
@@ -47,51 +47,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-@Composable
-fun ComposableExercise() {
-    Box(
-        modifier = Modifier
-            .size(200.dp)
-            .background(Color.Green)
-    ) {
-        Box(
-            modifier = Modifier
-                .background(Color.Red)
-                .size(150.dp)
-                .align(Alignment.Center)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(Color.Blue)
-                    .align(Alignment.CenterEnd)
-            )
-            Box(
-                modifier = Modifier
-                    .size(20.dp)
-                    .background(Color.White)
-                    .align(Alignment.TopStart)
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .background(Color.Gray)
-                .size(40.dp, 180.dp)
-                .align(Alignment.Center)
-        )
-
-        Box(
-            modifier = Modifier
-                .background(Color.Black)
-                .size(50.dp)
-                .align(Alignment.BottomStart)
-        )
-    }
-}
-
-
-
-
