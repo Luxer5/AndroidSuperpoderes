@@ -1,5 +1,6 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,12 +35,15 @@ import com.example.androidsuperpoderes.domain.model.HeroModel
 //Ejercicio ostrar un Diseño de un Hero
 
 @Composable
-fun ShowHero(hero: HeroModel) {
+fun ShowHero(
+    hero: HeroModel,
+    onClick: (() -> Unit)? = null
+) {
     Row(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .height(100.dp)
+            .clickable { onClick?.invoke() }
     ) {
         AsyncImage(
             modifier = Modifier

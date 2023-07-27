@@ -14,5 +14,6 @@ fun NavigationGraph(){
         addLoginScreen(navController)
         addForgotPasswordScreen(navController)
         addHeroListScreen(navController)
+        addHeroDetailScreen()
     }
 }

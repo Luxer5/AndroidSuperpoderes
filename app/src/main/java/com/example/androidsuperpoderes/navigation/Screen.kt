@@ -1,6 +1,8 @@
 package com.example.androidsuperpoderes.navigation
 
 import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 sealed class Screen(
     val route: String,
@@ -19,5 +21,17 @@ sealed class Screen(
     object  HeroListScreen : Screen(
         route = "heroList",
         arguments = emptyList()
+    )
+
+    object HeroDetailsScreen: Screen(
+        route = "heroDetail",
+        arguments = listOf(
+            navArgument(
+                "heroId"
+            ){
+                type = NavType.StringType
+                nullable = false
+            }
+        )
     )
 }

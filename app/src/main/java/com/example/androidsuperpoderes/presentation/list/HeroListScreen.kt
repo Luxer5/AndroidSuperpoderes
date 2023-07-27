@@ -11,14 +11,24 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HeroListScreen(
-    superHeroListViewModel: HeroListViewModel = koinViewModel()
+    superHeroListViewModel: HeroListViewModel = koinViewModel(),
+    onItemClick: (String) -> Unit
 ) {
-    val list = TestDataBuilder().withPhotoUrl("https://depor.com/resizer/oPf-2Xij6G_oA4sfJ7Y5DGDQYhM=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/DAYT2F5NUNB7VPAFKUPHNDXVQA.jpg")
+    val heroList = TestDataBuilder()
+        .withNumElements(15)
+        .withName("Name")
+        .withPhotoUrl("https://depor.com/resizer/oPf-2Xij6G_oA4sfJ7Y5DGDQYhM=" +
+                "/580x330/smart/filters:format(jpeg):quality(75)/" +
+                "cloudfront-us-east-1.images.arcpublishing.com/e" +
+                "lcomercio/DAYT2F5NUNB7VPAFKUPHNDXVQA.jpg")
         .buildList()
 
-    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally){
-        items(list.size){ i ->
-            ShowHero(list[i])
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
+        items(heroList.size) { i ->
+            val hero = heroList[i]
+            ShowHero(hero) {
+                onItemClick.invoke((hero.id))
+            }
         }
     }
 }

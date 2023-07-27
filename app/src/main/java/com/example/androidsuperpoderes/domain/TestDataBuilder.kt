@@ -22,6 +22,10 @@ class TestDataBuilder() {
         this.numElements =  numElements
         return  this
     }
+    fun withDescription(description: String): TestDataBuilder{
+        this.description = description
+        return this
+    }
 
     fun buildList():List<HeroModel>{
         val list = mutableListOf<HeroModel>()
