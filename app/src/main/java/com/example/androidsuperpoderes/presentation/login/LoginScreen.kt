@@ -13,10 +13,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -27,9 +30,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androidsuperpoderes.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit) {
+
+    var email by remember { mutableStateOf("") }
+
+    var password by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -40,7 +46,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
     ) {
         Image(
             painter = painterResource(id = R.drawable.dragon_ball_super),
-            modifier = Modifier.size(300.dp,200.dp),
+            modifier = Modifier.size(300.dp, 200.dp),
             contentDescription = ""
         )
         Text(text = "Android SuperPoderes", fontSize = 30.sp)
@@ -51,21 +57,28 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 .height(15.dp)
         )
 
-        TextField(value = "Email", onValueChange = {}, leadingIcon = {
-            Image(
-                imageVector = Icons.Default.Email,
-                contentDescription = "",
-                modifier = Modifier.alpha(0.5f)
-            )
-        })
+        TextField(
+            value = email,
+            placeholder = { Text(text = "Email") },
+            onValueChange = { email = it },
+            leadingIcon = {
+                Image(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = "",
+                    modifier = Modifier.alpha(0.5f)
+                )
+            })
 
-        TextField(value = "Password", onValueChange = {}, leadingIcon = {
-            Image(
-                painter = painterResource(id = R.drawable.password),
-                contentDescription = "",
-                modifier = Modifier.alpha(0.5f)
-            )
-        },
+        TextField(value = password,
+            placeholder = { Text(text = "Password") },
+            onValueChange = { password = it },
+            leadingIcon = {
+                Image(
+                    painter = painterResource(id = R.drawable.password),
+                    contentDescription = "",
+                    modifier = Modifier.alpha(0.5f)
+                )
+            },
             trailingIcon = {
                 Image(
                     painter = painterResource(id = R.drawable.visibility),
@@ -74,11 +87,19 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 )
             })
 
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(15.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(15.dp)
+        )
 
-        Button(onClick = onLoginSuccess, colors = ButtonDefaults.buttonColors(containerColor = Color.Yellow, contentColor = Color.Black)) {
+        Button(
+            onClick = onLoginSuccess,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Yellow,
+                contentColor = Color.Black
+            )
+        ) {
             Text(text = "Login")
         }
     }
