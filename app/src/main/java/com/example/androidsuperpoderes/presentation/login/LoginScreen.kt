@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.example.androidsuperpoderes.R
 
 @Composable
-fun LoginScreen(onLoginSuccess: () -> Unit) {
+fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
 
     var email by remember { mutableStateOf("") }
 
@@ -102,6 +102,15 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
         ) {
             Text(text = "Login")
         }
+        Button(
+            onClick = onForgotPassword,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Green,
+                contentColor = Color.Black
+            )
+        ) {
+            Text(text = "ForgotPassword")
+        }
     }
 }
 
@@ -109,5 +118,5 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen({})
+    LoginScreen({},{})
 }

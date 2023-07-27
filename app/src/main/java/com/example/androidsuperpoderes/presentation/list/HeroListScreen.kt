@@ -6,7 +6,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun HeroListScreen(){
+fun HeroListScreen(
+    // TODO inyector viewModel
+){
     Box(modifier = Modifier.fillMaxSize()){
         Text(modifier = Modifier.align(Alignment.Center), text = "HeroListScreen")
     }

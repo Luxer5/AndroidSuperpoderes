@@ -7,9 +7,9 @@ import com.example.androidsuperpoderes.presentation.login.LoginScreen
 
 fun NavGraphBuilder.addLoginScreen(navController: NavController){
     composable(Screen.LoginScreen.route){
-        LoginScreen {
-            navController.navigate(Screen.HeroListScreen.route)
-        }
+        LoginScreen( onLoginSuccess = {navController.navigate(Screen.HeroListScreen.route)}
+
+        , onForgotPassword = {navController.navigate(Screen.ForgotPassWordScreen.route)})
     }
 }
 
