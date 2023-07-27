@@ -1,0 +1,21 @@
+package com.example.androidsuperpoderes.data.remote
+
+import IdDto
+import LocationDto
+import com.example.androidsuperpoderes.data.dto.HeroDTO
+import com.example.androidsuperpoderes.data.dto.SearchDto
+import retrofit2.http.Body
+import retrofit2.http.Headers
+import retrofit2.http.POST
+
+const val TOKEN = "eyJ0eXAiOiJKV1QiLCJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYifQ.eyJleHBpcmF0aW9uIjo2NDA5MjIxMTIwMCwiZW1haWwiOiJjZHRsQHBydWVibWFpbC5lcyIsImlkZW50aWZ5IjoiRDIwRTAwQTktODY0NC00MUYyLUE0OUYtN0ZDRUY2MTVFMTQ3In0.CcUbDouB7koUYrhmhKcy_KL6JHiJTN8C6pymzLg5MRY"
+interface SuperHeroApi {
+
+    @POST("api/heros/all")
+    @Headers("Authorization: Bearer $TOKEN")
+    suspend fun getHeroList(@Body searchDto: SearchDto): List<HeroDTO>
+
+    @POST("api/heros/locations")
+    @Headers("Authorization: Bearer $TOKEN")
+    suspend fun getLocationList(@Body idDto: IdDto): List<LocationDto>
+}
