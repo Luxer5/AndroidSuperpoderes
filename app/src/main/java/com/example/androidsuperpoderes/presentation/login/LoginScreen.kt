@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androidsuperpoderes.R
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
@@ -113,6 +114,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
         }
     }
 }
+
 
 
 @Preview
