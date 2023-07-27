@@ -1,6 +1,7 @@
 package com.example.androidsuperpoderes
 
 import NavigationGraph
+import TestList
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +14,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidSuperpoderesTheme {
                 NavigationGraph()
+                //TestList()
             }
         }
     }
