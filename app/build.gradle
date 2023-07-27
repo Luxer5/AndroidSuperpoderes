@@ -53,6 +53,9 @@ dependencies {
     def retrofitVersion = '2.9.0'
     def roomVersion = '2.5.1'
 
+    //Icons Extended
+    //implementation "androidx.compose.material:material-icons-extended"
+
     //Koin
     implementation "io.insert-koin:koin-android:${koin_version}"
 

@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androidsuperpoderes.presentation.login.LoginScreen
 import com.example.androidsuperpoderes.ui.theme.AndroidSuperpoderesTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +35,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidSuperpoderesTheme {
                 //Ejercicio1()
-                Ejercicio2()
+                //Ejercicio2()
+                LoginScreen{
+                    //TODO
+                }
                 /*BaseComposable {
                         Surface(
                             modifier = Modifier.fillMaxSize(),
