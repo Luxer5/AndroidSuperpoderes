@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidsuperpoderes.domain.model.HeroModel
 import com.example.androidsuperpoderes.domain.useCase.GetHeroListUseCase
+import com.example.androidsuperpoderes.presentation.login.FlowExamples
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,6 +21,8 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
     private val _errorMessage = MutableLiveData<String?>()
     val error: LiveData<String?> get() =_errorMessage
 
+    val examples = FlowExamples()
+
     init {
         getData()
     }
@@ -28,7 +31,8 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
 
         viewModelScope.launch {
             //Capturamos las excepciones
-            try {
+            examples.exercise2()
+            /*try {
                 _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
                     getHeroListUseCase.invoke()
@@ -37,7 +41,7 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
                 _heroList.value = result
             } catch (t: Throwable) {
                 _errorMessage.value = "Seha priducido un error"
-            }
+            }*/
 
         }
 
