@@ -31,7 +31,7 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
 
         viewModelScope.launch {
             //Capturamos las excepciones
-            examples.exercise2()
+            examples.exampleFold()
             /*try {
                 _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
