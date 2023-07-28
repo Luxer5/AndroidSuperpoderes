@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.androidsuperpoderes.domain.TestDataBuilder
@@ -14,20 +15,20 @@ fun HeroListScreen(
     superHeroListViewModel: HeroListViewModel = koinViewModel(),
     onItemClick: (String) -> Unit
 ) {
-    val heroList = TestDataBuilder()
-        .withNumElements(15)
-        .withName("Name")
-        .withPhotoUrl("https://depor.com/resizer/oPf-2Xij6G_oA4sfJ7Y5DGDQYhM=" +
-                "/580x330/smart/filters:format(jpeg):quality(75)/" +
-                "cloudfront-us-east-1.images.arcpublishing.com/e" +
-                "lcomercio/DAYT2F5NUNB7VPAFKUPHNDXVQA.jpg")
-        .buildList()
+    val state = superHeroListViewModel.heroList.observeAsState()
+
+    //superHeroListViewModel.getData()
+
+    // TODO Manage error
 
     LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-        items(heroList.size) { i ->
-            val hero = heroList[i]
-            ShowHero(hero) {
-                onItemClick.invoke((hero.id))
+        val heroList = state.value
+        items(heroList?.size ?: 0) {i ->
+
+            heroList?.get(i)?.let { hero ->
+                ShowHero(hero) {
+                    onItemClick.invoke((hero.id))
+                }
             }
         }
     }

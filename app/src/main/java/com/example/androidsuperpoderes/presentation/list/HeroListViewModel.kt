@@ -14,10 +14,11 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
     val testString = "Test"
 
     private val _heroList = MutableLiveData<List<HeroModel>>()
-    val heros: LiveData<List<HeroModel>> get() = _heroList
+    val heroList: LiveData<List<HeroModel>> get() = _heroList
 
-    private val _errorMessage = MutableLiveData<String>()
-    val error: LiveData<String> get() = _errorMessage
+    init {
+        getData()
+    }
 
     fun getData() {
 
@@ -29,9 +30,8 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
 
                 }
                 _heroList.value = result
-                _errorMessage.value = ""
             } catch (t: Throwable) {
-                //para resolver un string necesito un contexto
+                //TODO
             }
 
         }
