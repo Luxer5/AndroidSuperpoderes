@@ -31,8 +31,8 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
 
         viewModelScope.launch {
             //Capturamos las excepciones
-            examples.exampleFold()
-            /*try {
+            //examples.exampleFold()
+            try {
                 _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
                     getHeroListUseCase.invoke()
@@ -41,7 +41,7 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
                 _heroList.value = result
             } catch (t: Throwable) {
                 _errorMessage.value = "Seha priducido un error"
-            }*/
+            }
 
         }
 
