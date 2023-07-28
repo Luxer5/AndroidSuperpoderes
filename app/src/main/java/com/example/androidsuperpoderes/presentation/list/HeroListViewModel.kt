@@ -9,12 +9,16 @@ import com.example.androidsuperpoderes.domain.useCase.GetHeroListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.RuntimeException
 
 class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : ViewModel(){
     val testString = "Test"
 
     private val _heroList = MutableLiveData<List<HeroModel>>()
     val heroList: LiveData<List<HeroModel>> get() = _heroList
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val error: LiveData<String?> get() =_errorMessage
 
     init {
         getData()
@@ -25,13 +29,14 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
         viewModelScope.launch {
             //Capturamos las excepciones
             try {
+                _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
                     getHeroListUseCase.invoke()
 
                 }
                 _heroList.value = result
             } catch (t: Throwable) {
-                //TODO
+                _errorMessage.value = "Seha priducido un error"
             }
 
         }

@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.compose.get
+import kotlin.reflect.jvm.internal.impl.serialization.deserialization.FlexibleTypeDeserializer.ThrowException
 
 class DetailViewModel(
     private val context: Context,
@@ -33,7 +34,8 @@ class DetailViewModel(
     private var userLocation: LocationModel? = null
     private var heroLocation: LocationModel? = null
 
-
+    private val _errorMessage = MutableLiveData<String?>()
+    val error: LiveData<String?> get() =_errorMessage
 
     fun setUserLocation(lat: Double, long: Double){
         userLocation = LocationModel(
@@ -79,10 +81,16 @@ class DetailViewModel(
     }
 
     private fun getHero(id: String) = viewModelScope.launch {
-        val result = withContext(Dispatchers.IO){
-            getDetailUseCase.invoke(id)
+        try {
+            _errorMessage.value = null
+            val result = withContext(Dispatchers.IO){
+                getDetailUseCase.invoke(id)
+            }
+            _hero.value = result
+        }catch (_: Throwable){
+            _errorMessage.value = "Error al cargar la infor del Heroe"
         }
-        _hero.value = result
+
     }
 
 }

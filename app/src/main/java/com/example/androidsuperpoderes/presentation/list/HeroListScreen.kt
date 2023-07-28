@@ -16,18 +16,24 @@ fun HeroListScreen(
     onItemClick: (String) -> Unit
 ) {
     val state = superHeroListViewModel.heroList.observeAsState()
+    val errorState = superHeroListViewModel.error.observeAsState()
 
     //superHeroListViewModel.getData()
 
-    // TODO Manage error
+    if(errorState.value?.isNotEmpty() ==true){
+        val error =errorState.value
+        Box(modifier = Modifier.fillMaxSize()){
+            Text(text = error ?: "")
+        }
+    }
 
     LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
         val heroList = state.value
         items(heroList?.size ?: 0) {i ->
 
             heroList?.get(i)?.let { hero ->
-                ShowHero(hero) {
-                    onItemClick.invoke((hero.id))
+                ShowHero(hero = hero, descripVisibility = false) {
+                    onItemClick.invoke(hero.id)
                 }
             }
         }
