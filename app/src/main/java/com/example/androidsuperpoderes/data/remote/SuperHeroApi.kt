@@ -4,6 +4,7 @@ import IdDto
 import LocationDto
 import com.example.androidsuperpoderes.data.dto.HeroDTO
 import com.example.androidsuperpoderes.data.dto.SearchDto
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST

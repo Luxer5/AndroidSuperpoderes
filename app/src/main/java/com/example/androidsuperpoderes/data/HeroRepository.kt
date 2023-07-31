@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface HeroRepository {
 
-    suspend fun getHeroList(): List<HeroModel>
+    suspend fun getHeroList(): Flow<List<HeroModel>>
 
     suspend fun getHeroById(id: String): Flow<HeroModel>
 
