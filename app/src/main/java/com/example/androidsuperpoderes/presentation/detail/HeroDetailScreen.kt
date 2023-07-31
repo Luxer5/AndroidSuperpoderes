@@ -29,8 +29,7 @@ fun HeroDetailScreen(
     when (heroState.value) {
         is HeroDetailState.Idlestate -> {}
         is HeroDetailState.Loading ->{
-            //Composable de Loadinh
-
+            //Composable de Loading
         }
         is HeroDetailState.Hero ->{
             ShowHero((heroState.value as HeroDetailState.Hero).hero, true)

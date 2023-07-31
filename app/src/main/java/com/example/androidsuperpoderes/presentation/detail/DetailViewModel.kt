@@ -69,6 +69,7 @@ class DetailViewModel(
     }
 
     private fun getHero(id: String) = viewModelScope.launch {
+            _heroFlow.value = HeroDetailState.Loading
             getDetailUseCase.invoke(id).collect{
                 _heroFlow.value =  HeroDetailState.Hero(it)
             }
