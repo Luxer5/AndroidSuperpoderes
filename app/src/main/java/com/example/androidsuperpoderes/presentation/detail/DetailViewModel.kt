@@ -12,6 +12,9 @@ import com.example.androidsuperpoderes.domain.useCase.GetDetailUseCase
 import com.example.androidsuperpoderes.domain.useCase.GetDistanceFromHeroUseCase
 import com.example.androidsuperpoderes.domain.useCase.GetHeroLocationUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.compose.get
@@ -25,11 +28,13 @@ class DetailViewModel(
 ): ViewModel() {
     //private val hero = getDetailUseCase.invoke()
 
-    private var _hero = MutableLiveData<HeroModel>()
-    private val _location = MutableLiveData<String>()
 
-    val hero: LiveData<HeroModel> get() = _hero
-    val location: LiveData<String> get() =_location
+
+    private val _heroFlow = MutableStateFlow<HeroDetailState>(HeroDetailState.Idlestate)
+    val heroFlow: StateFlow<HeroDetailState> = _heroFlow
+
+
+
 
     private var userLocation: LocationModel? = null
     private var heroLocation: LocationModel? = null
@@ -42,26 +47,10 @@ class DetailViewModel(
             latitud = lat,
             longitud = long
         )
-        showLocation()
+
     }
 
-    private fun showLocation(){
-        //Comprobar que tengo ambas ubicaciones
-        //Unwrap
-        userLocation?.let { userLocationSafe ->
-            heroLocation?.let { heroLocationSafe ->
 
-                val distance = getDistanceFromHeroUseCase.invoke(
-                    userLocationSafe,
-                    heroLocationSafe
-                )
-                _location.value = context.getString(R.string.user_location, distance.toString())
-            }
-        }
-
-        //Devolver la distancia
-        //_location.value = result
-    }
 
     fun getData(id:String){
         viewModelScope.launch {
@@ -76,21 +65,13 @@ class DetailViewModel(
                 getHeroLocationUseCase.invoke(id)
             }
             heroLocation = result
-            showLocation()
         }catch (_: Throwable){} //Error silencioso
     }
 
     private fun getHero(id: String) = viewModelScope.launch {
-        try {
-            _errorMessage.value = null
-            val result = withContext(Dispatchers.IO){
-                getDetailUseCase.invoke(id)
+            getDetailUseCase.invoke(id).collect{
+                _heroFlow.value =  HeroDetailState.Hero(it)
             }
-            _hero.value = result
-        }catch (_: Throwable){
-            _errorMessage.value = "Error al cargar la infor del Heroe"
-        }
-
     }
 
 }
