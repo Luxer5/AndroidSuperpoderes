@@ -1,4 +1,4 @@
-package com.example.androidsuperpoderes.presentation.login
+package com.example.androidsuperpoderes.presentation.list
 
 import android.util.Log
 import kotlinx.coroutines.flow.asFlow
@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.reduce
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 
 class FlowExamples {
     suspend fun Exercise1(){
@@ -48,6 +51,37 @@ class FlowExamples {
             acc +value
         }
         Log.d("ExampleFold", result.toString())
+    }
+
+    suspend fun exerciseSum(){
+        val flow= listOf(1,5,7,8).asFlow()
+        //mostrar un log sumatorio usando flows
+        val result = flow.reduce {
+                acc, b -> acc + b
+        }
+            Log.d("Ejercicio3", "Sumatorio: $result")
+
+    }
+
+    suspend fun exercise3(){
+        val flow = listOf(
+            "Maestro Roshi",
+            "Krilin",
+            "Mr. Satan",
+            "Goku",
+            "Bulma"
+        )
+
+        val result = flow.asFlow().filter {
+            it.length % 2 == 1
+        }
+            .take(2)
+            .reduce(){acc , value ->
+            "$acc y $value"
+            }
+
+
+        Log.d("Exercise4", "Bienvenidos,  $result" )
     }
 
 }

@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidsuperpoderes.domain.model.HeroModel
 import com.example.androidsuperpoderes.domain.useCase.GetHeroListUseCase
-import com.example.androidsuperpoderes.presentation.login.FlowExamples
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.RuntimeException
 
 class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : ViewModel(){
     val testString = "Test"
@@ -32,6 +30,7 @@ class HeroListViewModel (private val getHeroListUseCase: GetHeroListUseCase) : V
         viewModelScope.launch {
             //Capturamos las excepciones
             //examples.exampleFold()
+            examples.exercise3()
             try {
                 _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
