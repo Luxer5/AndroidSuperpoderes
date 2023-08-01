@@ -3,7 +3,7 @@ package com.example.androidsuperpoderes.domain
 import com.example.androidsuperpoderes.domain.model.HeroModel
 
 class TestDataBuilder() {
-    var id = "Iddelhero"
+    var id = "test-id"
     var name = "nombre Heroe"
     var photoUrl = ""
     var description = "Descripcion del hero"
@@ -29,7 +29,7 @@ class TestDataBuilder() {
 
     fun buildList():List<HeroModel>{
         val list = mutableListOf<HeroModel>()
-        for(i in 0 .. numElements){
+        for(i in 0 until numElements){
             list.add(HeroModel(id,name, photoUrl, description, favorite))
         }
         return list.toList()

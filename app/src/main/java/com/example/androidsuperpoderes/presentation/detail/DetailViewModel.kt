@@ -18,10 +18,10 @@ import org.koin.androidx.compose.get
 import kotlin.reflect.jvm.internal.impl.serialization.deserialization.FlexibleTypeDeserializer.ThrowException
 
 class DetailViewModel(
-    private val context: Context,
-    private val getDetailUseCase: GetDetailUseCase,
-    private val getHeroLocationUseCase: GetHeroLocationUseCase,
-    private val getDistanceFromHeroUseCase: GetDistanceFromHeroUseCase
+    //private val context: Context,
+    private val getDetailUseCase: GetDetailUseCase
+   // private val getHeroLocationUseCase: GetHeroLocationUseCase,
+    //private val getDistanceFromHeroUseCase: GetDistanceFromHeroUseCase
 ): ViewModel() {
     //private val hero = getDetailUseCase.invoke()
 
@@ -37,15 +37,15 @@ class DetailViewModel(
     private val _errorMessage = MutableLiveData<String?>()
     val error: LiveData<String?> get() =_errorMessage
 
-    fun setUserLocation(lat: Double, long: Double){
+    /*fun setUserLocation(lat: Double, long: Double){
         userLocation = LocationModel(
             latitud = lat,
             longitud = long
         )
         showLocation()
-    }
+    }*/
 
-    private fun showLocation(){
+    /*private fun showLocation(){
         //Comprobar que tengo ambas ubicaciones
         //Unwrap
         userLocation?.let { userLocationSafe ->
@@ -61,7 +61,7 @@ class DetailViewModel(
 
         //Devolver la distancia
         //_location.value = result
-    }
+    }*/
 
     fun getData(id:String){
         viewModelScope.launch {
@@ -70,7 +70,7 @@ class DetailViewModel(
         }
     }
 
-    private fun getLocation(id: String) = viewModelScope.launch {
+    /*private fun getLocation(id: String) = viewModelScope.launch {
         try {
             val result = withContext(Dispatchers.IO){
                 getHeroLocationUseCase.invoke(id)
@@ -78,11 +78,10 @@ class DetailViewModel(
             heroLocation = result
             showLocation()
         }catch (_: Throwable){} //Error silencioso
-    }
+    }*/
 
     private fun getHero(id: String) = viewModelScope.launch {
         try {
-            _errorMessage.value = null
             val result = withContext(Dispatchers.IO){
                 getDetailUseCase.invoke(id)
             }
