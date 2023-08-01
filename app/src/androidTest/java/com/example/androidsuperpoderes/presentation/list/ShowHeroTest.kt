@@ -5,12 +5,13 @@ import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToLog
 import com.example.androidsuperpoderes.domain.TestDataBuilder
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
-class ShowHeroKtTest{
+class ShowHeroTest{
     @get:Rule
     val rule = createComposeRule()
 
