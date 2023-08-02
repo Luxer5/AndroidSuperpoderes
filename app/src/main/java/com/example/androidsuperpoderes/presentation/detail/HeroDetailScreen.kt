@@ -14,6 +14,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import com.example.androidsuperpoderes.presentation.detail.DetailViewModel
 import com.example.androidsuperpoderes.presentation.detail.ShowHeroDetail
 import org.koin.androidx.compose.koinViewModel
@@ -46,9 +49,12 @@ fun HeroDetailScreen(
                     },
                     navigationIcon = {
                         IconButton(
+                            modifier= Modifier.semantics {
+                                contentDescription= "Atras, Boton Ir al listado de personajes"
+                            },
                             onClick = onBackPressed
                         ) {
-                            Icon(Icons.Filled.ArrowBack, "Boton de marcha atras")
+                            Icon(Icons.Filled.ArrowBack, null)
                         }
                         Icons.Filled.ArrowBack
                     }
