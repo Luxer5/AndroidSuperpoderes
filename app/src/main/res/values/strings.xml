@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AndroidSuperpoderes</string>
     <string name="user_location">La distancia hasta es %1s km</string>
+    <string name="login">Login</string>
 </resources>

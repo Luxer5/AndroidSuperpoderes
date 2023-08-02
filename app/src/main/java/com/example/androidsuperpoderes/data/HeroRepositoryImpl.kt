@@ -19,14 +19,14 @@ class HeroRepositoryImpl(
     override suspend fun getHeroList(): List<HeroModel> {
         val localData = localDataSource.getHeroList()
 
-        if(localData.isNotEmpty()){
-            return localData.map { it.toHeroModel() }
+        return if(localData.isNotEmpty()){
+            localData.map { it.toHeroModel() }
         }else{
             val remoteData = remoteDataSource.getHeroList().filter {
                 it.id?.isNotEmpty() == true
             }
             localDataSource.insertHeroList(remoteData.map { it.toHeroLocal() })
-            return remoteData.map {
+            remoteData.map {
                 it.toHeroModel()
             }
         }

@@ -1,5 +1,7 @@
 package com.example.androidsuperpoderes.presentation.login
 
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -9,10 +11,11 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Rule
 import org.junit.Test
+import com.example.androidsuperpoderes.R
 
 class LoginScreenTest{
     @get:Rule
-    val rule = createComposeRule()
+    val rule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
     fun testClickLoginButton(){
@@ -23,12 +26,14 @@ class LoginScreenTest{
             }, onForgotPassword = {})
         }
 
+        val loginText = rule.activity.getString(R.string.login)
+
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_USER)
             .performTextInput("ejemplo@gmail.com")
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_PASSWORD)
             .performTextInput("password")
 
-        rule.onNodeWithText("Login").performClick()
+        rule.onNodeWithText(loginText).performClick()
         assertThat(logged, `is`(true))
     }
 
