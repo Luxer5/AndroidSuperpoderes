@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.androidsuperpoderes.domain.TestDataBuilder
 import com.example.androidsuperpoderes.presentation.list.HeroListViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -32,7 +31,7 @@ fun HeroListScreen(
         items(heroList?.size ?: 0) {i ->
 
             heroList?.get(i)?.let { hero ->
-                ShowHero(hero = hero, descripVisibility = false) {
+                ShowHeroList(hero = hero, descripVisibility = false) {
                     onItemClick.invoke(hero.id)
                 }
             }

@@ -1,4 +1,3 @@
-import android.text.BoringLayout
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,10 +30,10 @@ import com.example.androidsuperpoderes.domain.model.HeroModel
 //Ejercicio ostrar un Diseño de un Hero
 
 @Composable
-fun ShowHero(
+fun ShowHeroList(
     hero: HeroModel,
     descripVisibility: Boolean = false,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)
 ) {
     var starred by remember {
         mutableStateOf(false)
@@ -88,5 +87,5 @@ fun ShowHero(
 @Preview
 @Composable
 fun ShowHeroPreview() {
-    ShowHero(TestDataBuilder().buildSingle())
+    ShowHeroList(TestDataBuilder().buildSingle(), onClick = {})
 }

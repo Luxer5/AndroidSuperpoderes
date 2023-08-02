@@ -1,12 +1,10 @@
 package com.example.androidsuperpoderes.presentation.list
 
-import ShowHero
+import ShowHeroList
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onRoot
-import androidx.compose.ui.test.printToLog
 import com.example.androidsuperpoderes.domain.TestDataBuilder
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +16,7 @@ class ShowHeroTest{
     @Test
     fun testShowHero(){
         rule.setContent {
-            ShowHero(
+            ShowHeroList(
                 TestDataBuilder()
                     .withName("Sample")
                     .buildSingle()

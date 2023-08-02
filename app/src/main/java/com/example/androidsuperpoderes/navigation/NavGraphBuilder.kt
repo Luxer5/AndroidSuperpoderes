@@ -26,13 +26,13 @@ fun NavGraphBuilder.addHeroListScreen(navController: NavController){
         }
     }
 }
-fun NavGraphBuilder.addHeroDetailScreen(){
+fun NavGraphBuilder.addHeroDetailScreen(navController: NavController){
     composable(
         route = Screen.HeroDetailsScreen.route + "/{heroId}",
         arguments = Screen.HeroDetailsScreen.arguments
     ){navBackStackEntry ->
         val id = navBackStackEntry.arguments?.getString("heroId") ?: ""
-        HeroDetailScreen(id = id)
+        HeroDetailScreen(id = id, onBackPressed = {navController.popBackStack()})
 
 
     }

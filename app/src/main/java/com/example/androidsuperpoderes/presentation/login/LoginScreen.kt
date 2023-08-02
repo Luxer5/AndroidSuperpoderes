@@ -53,7 +53,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.dragon_ball_super),
             modifier = Modifier.size(300.dp, 200.dp),
-            contentDescription = ""
+            contentDescription = "SuperHero application"
         )
         Text(text = "Android SuperPoderes", fontSize = 30.sp)
 
@@ -71,7 +71,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
             leadingIcon = {
                 Image(
                     imageVector = Icons.Default.Email,
-                    contentDescription = "",
+                    contentDescription = "Email",
                     modifier = Modifier.alpha(0.5f)
                 )
             })
@@ -84,7 +84,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
             leadingIcon = {
                 Image(
                     painter = painterResource(id = R.drawable.password),
-                    contentDescription = "",
+                    contentDescription = "password",
                     modifier = Modifier.alpha(0.5f)
                 )
             },
@@ -104,9 +104,10 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
 
         Button(
             onClick = {
-                if(authenticate(email, password)){
+                      onLoginSuccess()
+                /*if(authenticate(email, password)){
                         onLoginSuccess()
-                    }
+                    }*/
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Yellow,
