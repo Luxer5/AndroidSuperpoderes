@@ -24,11 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androidsuperpoderes.R
+
+
+const val LOGIN_TEXT_FIELD_USER = "LOGIN_TEXT_FIELD_USER"
+const val LOGIN_TEXT_FIELD_PASSWORD= "LOGIN_TEXT_FIELD_PASSWORD"
 
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
@@ -58,6 +63,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
         )
 
         TextField(
+            modifier=Modifier.testTag(LOGIN_TEXT_FIELD_USER),
             value = email,
             placeholder = { Text(text = "Email") },
             onValueChange = { email = it },
@@ -69,7 +75,9 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
                 )
             })
 
-        TextField(value = password,
+        TextField(
+            modifier=Modifier.testTag(LOGIN_TEXT_FIELD_PASSWORD),
+            value = password,
             placeholder = { Text(text = "Password") },
             onValueChange = { password = it },
             leadingIcon = {
@@ -94,7 +102,11 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
         )
 
         Button(
-            onClick = onLoginSuccess,
+            onClick = {
+                if(authenticate(email, password)){
+                        onLoginSuccess()
+                    }
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Yellow,
                 contentColor = Color.Black
@@ -121,3 +133,5 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
 fun LoginScreenPreview() {
     LoginScreen({},{})
 }
+
+fun authenticate(user: String, password: String) = user=="ejemplo@gmail.com" && password=="password"
