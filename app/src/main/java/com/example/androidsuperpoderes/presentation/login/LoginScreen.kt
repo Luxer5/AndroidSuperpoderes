@@ -53,7 +53,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.dragon_ball_super),
             modifier = Modifier.size(300.dp, 200.dp),
-            contentDescription = "SuperHero application"
+            contentDescription = "SuperHero applicationnn"
         )
         Text(text = "Android SuperPoderes", fontSize = 30.sp)
 
