@@ -55,7 +55,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit, onForgotPassword: () -> Unit) {
             modifier = Modifier.size(300.dp, 200.dp),
             contentDescription = "SuperHero applicationnn"
         )
-        Text(text = "Android SuperPoderes", fontSize = 30.sp)
+        Text(text = "Android SuperPoderes Feature", fontSize = 30.sp)
 
         Spacer(
             modifier = Modifier
